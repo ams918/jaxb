@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0011"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0011.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0011.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0011 - REGISTRO DE OPT-IN
+                    </cat:Evento>
+                    <cat:Descricao>
+                        REGISTRO DE OPT-IN
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+	<!-- Definição do RRCDOC do arquivo -->
+	<xs:complexType name="RRCDOCComplexType">
+		<xs:sequence>
+			<xs:element name="BCMSG" type="BCMSGComplexType"/>
+			<xs:element name="SISMSG" type="SISMSGComplexType"/>
+			<xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- Definição do SISARQ -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0011" type="RRC0011ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>REGISTRO DE OPT-IN
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>R2C3</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RRC0011R1" type="RRC0011R1ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>RETORNO REGISTRO DE OPT-IN
+                            </cat:Descricao>
+                            <cat:Emissor>R2C3</cat:Emissor>
+                            <cat:Destinatario>Participante</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+	<xs:complexType name="RRC0011ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0011">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfCampo>
+                            <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                            <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                        </cat:InfCampo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="Grupo_RRC0011_AutcEnvAgenda_ComplexType" name="Grupo_RRC0011_AutcEnvAgenda">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Unidade Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0011_AutcEnvAgenda_ComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdCtrlReqSolicte" type="ControleParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Controle Requisição Solicitante
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CNPJBase_CPFUsuFinalRecbdr_Titlar" type="CNPJ_CNPJBase_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJCreddrSub" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJFincdr" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Financiador
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgto">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código Instituidor Arranjo Pagamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtOptIn" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Assinatura Opt-In
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtIniOptIn" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Início Opt-In
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtFimOptIn" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Fim Opt-In
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrDomcl" type="IndrSemDominio">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador de Domicilio
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RRC0011R1ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0011R1">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfCampo>
+                            <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                            <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                        </cat:InfCampo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SitRetReq" type="SitRet">
+                <xs:annotation>
+                    <xs:documentation>
+                        Situação de Retorno da Requisição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdCtrlReqSolicte" type="ControleParticipanteErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Controle Requisição Solicitante
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdCtrlOptIn" type="Identificador">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Controle CIP OPT-IN
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJER" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Entidade Registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

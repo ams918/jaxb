@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0016"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0016.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0016.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0016 - Fechamento de Negociações
+                    </cat:Evento>
+                    <cat:Descricao>
+                        Fechamento de Negociações.
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <!-- Definição do RRCDOC do arquivo -->
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0016" type="RRC0016ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>Fechamento de Negociações.
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>R2C3</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="RRC0016ComplexType">
+        <xs:sequence>
+            <xs:element name='CodMsg' type='CodMsg' fixed='RRC0016'>
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfCampo>
+                            <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                            <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                        </cat:InfCampo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtHrFcht" type="DataHora">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data e Hora Fechamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtHrER" type="DataHora">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data e Hora Entidade Registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtRef" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Referência
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema id="RRC0013E"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0013E.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0013E.xsd"
+           elementFormDefault="qualified"
+           version="8.6">
+
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+    <!-- Definicao da mensagem -->
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType"/>
+
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definicao do SISMSG da mensagem -->
+
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0013" type="RRC0013ComplexType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="RRC0013ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0013E"/>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipanteCodErr" minOccurs="0"/>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipanteCodErr" minOccurs="0"/>
+            <xs:element name="Grupo_RRC0013_CanceltAutcEnvAgenda" type="Grupo_RRC0013_CanceltAutcEnvAgendaComplexType"
+                        minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CodErro" type="CodErro"/>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0013_CanceltAutcEnvAgendaComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdCtrlReqSolicte" type="ControleParticipanteErr" minOccurs="0"/>
+            <xs:element name="IdentdCtrlOptIn" type="IdentificadorCodErr" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CodErro" type="CodErro"/>
+    </xs:complexType>
+
+</xs:schema>

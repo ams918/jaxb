@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0026"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0026.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0026.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do AR2C3DOC do arquivo -->
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0026" type="RRC0026_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>RRC0026 - Informa Onus Reserva
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>CIP</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0026 - Comum - Contestação
+                    </cat:Evento>
+                    <cat:Descricao>
+                        Contestação
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <!-- Definição do RRC0026 -->
+    <xs:complexType name="RRC0026_ComplexType">
+        <xs:sequence>
+            <xs:element name="Grupo_ARRC026_UsuFinalRecbdr" type="Grupo_ARRC026_UsuFinalRecbdr_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Início Grupo Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_ARRC026_UsuFinalRecbdr_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CPFUsuFinalRecbdr" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Credenciadora/Subcredenciadora.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_ARRC026_ArrajPgto" type="Grupo_ARRC026_ArrajPgto_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Início Grupo Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_ARRC026_ArrajPgto_ComplexType">
+        <xs:sequence>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgto">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código Instituidor Arranjo Pagamento.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_ARRC026_UniddRecbvl" type="Grupo_ARRC026_UniddRecbvl_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Unidade de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_ARRC026_UniddRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="DtPrevtLiquid" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Prevista Liquidação.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_ARRC026_OnusRes" type="Grupo_ARRC026_OnusRes_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Unidade de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_ARRC026_OnusRes_ComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdNegcRecbvl" type="ControleNegociacaoRecebivel">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Negociação Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOp" type="IdentificadorOperacao">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PriorddNegcRecbvl" type="Prioridade">
+                <xs:annotation>
+                    <xs:documentation>
+                        Prioridade Negociação Recebível.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

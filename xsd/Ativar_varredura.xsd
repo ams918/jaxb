@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+           targetNamespace="http://www.cip-bancos.org.br/MES/Ativar_varredura.xsd"
+           version="5.102"
+           xmlns="http://www.cip-bancos.org.br/MES/Ativar_varredura.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Definicao da mensagem -->
+    <xs:element name="DOC" type="DOCComplexType"/>
+    <xs:complexType name="DOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definicao do BCMSG da mensagem -->
+    <xs:complexType name='BCMSGComplexType'>
+        <xs:sequence>
+            <xs:element name="NUOp" type="NUOp"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definicao do SISMSG da mensagem -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="R2C3AtivarVarredura" type="R2C3AtivarVarreduraComplexType"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="R2C3AtivarVarreduraComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="xs:string"/>
+            <xs:element name="Parametro" type="ParametroType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="NUOp">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="23"/>
+            <xs:maxLength value="23"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ParametroType">
+        <xs:sequence>
+            <xs:element name="Nome" type="xs:string"/>
+            <xs:element name="Valor" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

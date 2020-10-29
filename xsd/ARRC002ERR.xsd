@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="ARRC002ERR"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/ARQ/ARRC002ERR.xsd"
+           xmlns="http://www.cip-bancos.org.br/ARQ/ARRC002ERR.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definicao do arquivo -->
+    <xs:element name="ARRCDOC" type="ARRCDOCERRComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>ARRC002ERR - R2C3 informa erro no arquivo de Baixa de Recebíveis
+                    </cat:Evento>
+                    <cat:Descricao>Destinado ao R2C3 informar erro no arquivo de Baixa de Recebíveis.
+                    </cat:Descricao>
+                    <cat:Servico>Erro no arquivo de Baixa de Recebíveis.</cat:Servico>
+                    <cat:TipoFluxo>
+                    </cat:TipoFluxo>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

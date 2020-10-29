@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema id="RRC0011E"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0011E.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0011E.xsd"
+           elementFormDefault="qualified"
+           version="8.6">
+
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+    <!-- Definicao da mensagem -->
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType"/>
+
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definicao do SISMSG da mensagem -->
+
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0011" type="RRC0011ComplexType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="RRC0011ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0011E"/>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipanteCodErr" minOccurs="0"/>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipanteCodErr" minOccurs="0"/>
+            <xs:element name="Grupo_RRC0011_AutcEnvAgenda" type="Grupo_RRC0011_AutcEnvAgendaComplexType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CodErro" type="CodErro"/>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0011_AutcEnvAgendaComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdCtrlReqSolicte" type="ControleParticipanteErr" minOccurs="0"/>
+            <xs:element name="CNPJ_CNPJBase_CPFUsuFinalRecbdr_Titlar" type="CNPJ_CNPJBase_CPFErr" minOccurs="0"/>
+            <xs:element name="CNPJCreddrSub" type="CNPJCodErr" minOccurs="0"/>
+            <xs:element name="CNPJFincdr" type="CNPJ_CPFCodErr" minOccurs="0"/>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgtoErr" minOccurs="0"/>
+            <xs:element name="DtOptIn" type="DataCodErr" minOccurs="0"/>
+            <xs:element name="DtIniOptIn" type="DataCodErr" minOccurs="0"/>
+            <xs:element name="DtFimOptIn" type="DataCodErr" minOccurs="0"/>
+            <xs:element name="IndrDomcl" type="IndrSemDominioCodErr" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="CodErro" type="CodErro"/>
+    </xs:complexType>
+
+</xs:schema>

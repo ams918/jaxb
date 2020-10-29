@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0020"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0020.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0020.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do AR2C3DOC do arquivo -->
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0020" type="RRC0020ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>RRC0020 - Financiador/Não Financeira - Cancelamento Gravame e Cessão (Negociação de Recebíveis)
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>CIP</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RRC0020R1" type="RRC0020R1ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>RRC0020R1 - Financiador/Não Financeira - Cancelamento Gravame e Cessão (Negociação de Recebíveis)
+                            </cat:Descricao>
+                            <cat:Emissor>CIP</cat:Emissor>
+                            <cat:Destinatario>Participante</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0020 - Financiador/Não Financeira - Cancelamento Gravame e Cessão (Negociação de Recebíveis)
+                    </cat:Evento>
+                    <cat:Descricao>
+                        INSTITUIÇÃO FINANCEIRA / NÃO FINANCEIRA - CIP/REGISTRADORA
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <!-- Definição do RRC0020 -->
+    <xs:complexType name="RRC0020ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0020">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfCampo>
+                            <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                            <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                        </cat:InfCampo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdNegcRecbvl" type="ControleNegociacaoRecebivel">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Negociação Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOp" type="IdentificadorOperacao">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CNPJBase_CPFTitlar" type="CNPJ_CNPJBase_CPFErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ (Completo ou Base) ou CPF  Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrCancelVlrTotal" type="Indr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador cancelamento de valor total
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrLiquidOp" type="Indr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador liquidação operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrCancelCessConstitr" type="Indr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador cancelamento de cessão a constituir
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0020_RegRecbvl" type="Grupo_RRC0020_RegRecbvl_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Registro de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definição do RRC0020R1RET -->
+    <xs:complexType name="RRC0020R1ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0020R1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Situação de Retorno da Requisição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SitRetReq" type="SitRet">
+                <xs:annotation>
+                    <xs:documentation>
+                        Situação de Retorno da Requisição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdNegcRecbvl" type="ControleNegociacaoRecebivel">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Negociação Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOp" type="IdentificadorOperacao">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOpCancel" type="IdentificadorOperacao">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação de cancelamento enviador pela registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0020_RegRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJCreddrSub" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CPFUsuFinalRecbdr" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF do usuário final recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgto">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código do arranjo de pagamentos
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtPrevtLiquid" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CPFTitularVendd_NegcdrRecbvl" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Titular Vendedor ou Negociador do Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrNegcdCancel" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor negociado cancelado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPercNegcdConstitrCancel" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor ou Percentual negociado a Constituir cancelado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0010E"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0021E.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0021E.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0010 - Consulta Unidades de Recebíveis
+                    </cat:Evento>
+                    <cat:Descricao>
+                        Consulta Unidades de Recebíveis.
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+	<!-- Definição do RRCDOC do arquivo -->
+	<xs:complexType name="RRCDOCComplexType">
+		<xs:sequence>
+			<xs:element name="BCMSG" type="BCMSGComplexType"/>
+			<xs:element name="SISMSG" type="SISMSGComplexType"/>
+			<xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0021" type="RRC0021ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>Consulta Unidades de Recebíveis.
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>R2C3</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+	<xs:complexType name="RRC0021ComplexType">
+        <xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0021E">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código da mensagem
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipanteCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipanteCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0021_NegcRecbvl" type="Grupo_RRC0021_NegcRecbvl_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Início Grupo Cancelamento Negociação de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0021_NegcRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdOp" type="IdentificadorOperacaoCodErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Operação enviado pela registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CNPJBase_CPFUsuFinalRecbdr" type="CNPJ_CNPJBase_CPFErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ (Completo ou Base) ou CPF Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CNPJBase_CPFTitlar" type="CNPJ_CNPJBase_CPFErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ (Completo ou Base) ou CPF  Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name='CodErro' type='CodErro'/>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0010"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0010.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0010.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0010 - Consulta Unidades de Recebíveis
+                    </cat:Evento>
+                    <cat:Descricao>
+                        Consulta Unidades de Recebíveis.
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+	<!-- Definição do RRCDOC do arquivo -->
+	<xs:complexType name="RRCDOCComplexType">
+		<xs:sequence>
+			<xs:element name="BCMSG" type="BCMSGComplexType"/>
+			<xs:element name="SISMSG" type="SISMSGComplexType"/>
+			<xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0010" type="RRC0010ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>Consulta Unidades de Recebíveis.
+                            </cat:Descricao>
+                            <cat:Emissor>Participante</cat:Emissor>
+                            <cat:Destinatario>R2C3</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RRC0010R1" type="RRC0010R1ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfArquivo>
+                            <cat:Descricao>Retorno da consulta Unidades de Recebíveis.
+                            </cat:Descricao>
+                            <cat:Emissor>R2C3</cat:Emissor>
+                            <cat:Destinatario>Participante</cat:Destinatario>
+                        </cat:InfArquivo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+	<xs:complexType name="RRC0010ComplexType">
+		<xs:sequence>
+            <xs:element name="CodMsg" type="CodMsg" fixed="RRC0010">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código da mensagem
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010_UniddRecbvl" type="Grupo_RRC0010_UniddRecbvl_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo de Dados Unidade Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010_UniddRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CNPJBase_CPFUsuFinalRecbdr" type="CNPJ_CNPJBase_CPF" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgto" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código Instituidor Arranjo Pagamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJCreddrSub" type="CNPJ" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtPrevtLiquid" type="Data" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivre" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Total Livre
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtIniPrevtLiquid" type="Data" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Inicial Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtFimPrevtLiquid" type="Data" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Fim Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrTpNegc" type="IndrTpNegc" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador Tipo Negociação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJ_CNPJBase_CPFTitlar" type="CNPJ_CNPJBase_CPF" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RRC0010R1ComplexType">
+        <xs:sequence>
+           <xs:element name="CodMsg" type="CodMsg" fixed="RRC0010R1">
+               <xs:annotation>
+                   <xs:documentation>
+                       <cat:InfCampo>
+                           <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                           <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                       </cat:InfCampo>
+                   </xs:documentation>
+               </xs:annotation>
+           </xs:element>
+           <xs:element name="SitRetReq" type="SitRet">
+               <xs:annotation>
+                   <xs:documentation>
+                       Situação de Retorno da Requisição
+                   </xs:documentation>
+               </xs:annotation>
+           </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipante">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+           <xs:element name="Grupo_RRC0010R1_CreddrSub" type="Grupo_RRC0010R1_CreddrSub_ComplexType" minOccurs="0"
+                       maxOccurs="unbounded">
+               <xs:annotation>
+                   <xs:documentation>
+                       Grupo Credenciadora/Subcredenciadora
+                   </xs:documentation>
+               </xs:annotation>
+           </xs:element>
+       </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_CreddrSub_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJER" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Entidade Registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJCreddrSub" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_ArrajPgto" type="Grupo_RRC0010R1_ArrajPgto_ComplexType"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Arranjo de Pagamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_ArrajPgto_ComplexType">
+        <xs:sequence>
+            <xs:element name="CodInstitdrArrajPgto" type="CodInstitdrArrajPgto">
+                <xs:annotation>
+                    <xs:documentation>
+                        Código Instituidor Arranjo Pagamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_UsuFinalRecbdr" type="Grupo_RRC0010R1_UsuFinalRecbdr_ComplexType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010_Titlar" type="Grupo_RRC0010R1_Titlar_ComplexType" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_UsuFinalRecbdr_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CPFUsuFinalRecbdr" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivreUsuFinalRecbdr" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre Usuário Final Recebedor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_UniddRecbvl" type="Grupo_RRC0010R1_UniddRecbvl_ComplexType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Unidade de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_UniddRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="DtPrevtLiquid" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrTot" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Total Unidade de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrDomcl" type="Indr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador de Domicilio
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010_Titlar" type="Grupo_RRC0010_Titlar_ComplexType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_NegcRecbvlInst" type="Grupo_RRC0010R1_NegcRecbvlInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Negociação de Recebível na Instituição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010_Titlar_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CPFTitlar" type="CNPJ_CPF" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ (Completo ou Base) ou CPF  Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrTotTitlar" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Comprometido em Outras Instituições
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrComprtdOutrInst" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Comprometido em Outras Instituições
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrComprtdInst" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Comprometido na Instituição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivreTot" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre Total
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivreAntecCreddrSub" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre Antecipação Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPreContrd" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Previsto Pré-Contratado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrOnusResTec" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Ônus Reserva Técnica
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_DomclBancInst" type="Grupo_RRC0010R1_DomclBancInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Início Grupo Registro de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_NegcRecbvOutrasInst" type="Grupo_RRC0010R1_NegcRecbvOutrasInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Negociação de Recebível Outras Instituições
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_DomclBancInst_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CPFTitlarCt" type="CNPJ_CPF">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Titular Conta
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TpCt" type="TpConta">
+                <xs:annotation>
+                    <xs:documentation>
+                        Tipo Conta
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ag" type="Agencia" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Agência
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Ct" type="CtBancaria" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Conta
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CtPgto" type="CtPgto" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Conta Pagamento
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtEftLiquid" type="Data" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Efetiva Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrEftLiquid" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Efetivo Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivre" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_NegcRecbvlInst" type="Grupo_RRC0010R1_NegcRecbvlInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Negociação de Recebível na Instituição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_NegcRecbvlInst_ComplexType">
+        <xs:sequence>
+            <xs:element name="IdentdOp" type="IdentificadorOperacao">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador CIP da Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PriorddNegcRecbvl" type="Prioridade">
+                <xs:annotation>
+                    <xs:documentation>
+                        Prioridade Negociação Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CNPJER" type="CNPJ">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ Entidade Registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrNegcd" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Negociado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPercNegcdConstitr" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor ou percentual a constituir IF credora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrRegrDivs" type="IndrRegrDivs">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador Regra Divisão
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtFimOp" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Fim Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_NegcRecbvOutrasInst_ComplexType">
+        <xs:sequence>
+            <xs:element name="IndrRegrDivs" type="IndrRegrDivs">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador Regra Divisão
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrNegcd" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Negociado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPercNegcdConstitr" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor ou percentual a constituir IF credora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtFimOp" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Fim Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PriorddNegcRecbvl" type="Prioridade">
+                <xs:annotation>
+                    <xs:documentation>
+                        Prioridade Negociação Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_Titlar_ComplexType">
+        <xs:sequence>
+            <xs:element name="CNPJ_CPFTitular" type="CNPJ_CPF" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        CNPJ ou CPF Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_UniddRecbvl" type="Grupo_RRC0010R1_Titlar_UniddRecbvl_ComplexType" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Unidade de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_Titlar_UniddRecbvl_ComplexType">
+        <xs:sequence>
+            <xs:element name="DtPrevtLiquid" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data Prevista Liquidação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrTotTitlar" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Total Titular
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrComprtdOutrInst" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Comprometido em Outras Instituições
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrComprtdInst" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Comprometido na Instituição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivreTot" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre Total
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrLivreAntecCreddrSub" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Livre Antecipação Credenciadora/Subcredenciadora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPreContrd" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Pré-Contratado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrOnusResTec" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Ônus Reserva Técnica
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_DomclBancInst" type="Grupo_RRC0010R1_DomclBancInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Domicílio Bancário na Instituição
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0010R1_NegcRecbvOutrasInst" type="Grupo_RRC0010R1_NegcRecbvlOutrasInst_ComplexType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Grupo Negociação de Recebível Outras Instituições
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0010R1_NegcRecbvlOutrasInst_ComplexType">
+        <xs:sequence>
+            <xs:element name="IndrRegrDivs" type="IndrRegrDivs">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador Regra Divisão
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrNegcd" type="Valor">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor Negociado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="VlrPercNegcdConstitr" type="Valor" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Valor ou percentual a constituir outras IF
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DtFimOp" type="Data">
+                <xs:annotation>
+                    <xs:documentation>
+                        Data fim do contrato outras IF
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PriorddNegcRecbvl" type="Prioridade">
+                <xs:annotation>
+                    <xs:documentation>
+                        Prioridade Negociação Recebível outras IF
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

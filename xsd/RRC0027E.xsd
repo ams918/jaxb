@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="RRC0027"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cip-bancos.org.br/MES/RRC0027E.xsd"
+           xmlns="http://www.cip-bancos.org.br/MES/RRC0027E.xsd"
+           xmlns:cat="http://www.cip-bancos.org.br/catalogomsg"
+           elementFormDefault="qualified"
+           version="8.6">
+
+    <xs:include schemaLocation="ARRCTIPOS.xsd"/>
+
+    <!-- Definição do AR2C3DOC do arquivo -->
+    <xs:complexType name="RRCDOCComplexType">
+        <xs:sequence>
+            <xs:element name="BCMSG" type="BCMSGComplexType"/>
+            <xs:element name="SISMSG" type="SISMSGComplexType"/>
+            <xs:element name="USERMSG" type="USERMSGSimpleType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definição do SISMES -->
+    <xs:complexType name="SISMSGComplexType">
+        <xs:choice>
+            <xs:element name="RRC0027" type="RRC0027_ComplexType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- Definição do DOC -->
+    <xs:element name="DOC" type="RRCDOCComplexType">
+        <xs:annotation>
+            <xs:documentation>
+                <cat:InfEvento>
+                    <cat:Evento>
+                        RRC0027 - Comum - Contestação
+                    </cat:Evento>
+                    <cat:Descricao>
+                        Contestação
+                    </cat:Descricao>
+                </cat:InfEvento>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <!-- Definição do rrc0027 -->
+    <xs:complexType name="RRC0027_ComplexType">
+        <xs:sequence>
+            <xs:element name='CodMsg' type='CodMsgCodErr' fixed='RRC0027E'>
+                <xs:annotation>
+                    <xs:documentation>
+                        <cat:InfCampo>
+                            <cat:NomeCampo>Código Mensagem</cat:NomeCampo>
+                            <cat:DescricaoCampo>Código da mensagem do sistema associado ao evento.</cat:DescricaoCampo>
+                        </cat:InfCampo>
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartPrincipal" type="IdentificadorParticipanteCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Principal
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdPartAdmtd" type="IdentificadorParticipanteCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Participante Administrado
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Grupo_RRC0027_Contstc" type="Grupo_RRC0027_Contstc_ComplexType">
+                <xs:annotation>
+                    <xs:documentation>
+                        Início Grupo Desconstituição Negociação de Recebível
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grupo_RRC0027_Contstc_ComplexType">
+        <xs:sequence>
+            <xs:element name="IdendPartOrigdrContstc" type="CNPJ_CPFCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        CPF / CNPJ da intituição originadora da contestação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdendPartContstd" type="CNPJ_CPFCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        CPF / CNPJ Instituição contestada
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdCtrlReqSolicte" type="ControleParticipanteErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador Controle Requisição Solicitante
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOpContstc" type="IdentificadorCodErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação de Contestação enviado pela registradora
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IndrMotvContstc" type="IndrMotvContstcCodErr">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicador de motivo da contestação da operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DescContstc" type="DescContstc" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        DescContstc
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdCtrlOptIn" type="IdentificadorCodErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador de controle do OPT-IN
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="IdentdOp" type="IdentificadorCodErr" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identificador da Operação
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
